@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "118218672420",
+    "firebase_url": "https://feminine-plaza.firebaseio.com",
+    "project_id": "feminine-plaza",
+    "storage_bucket": "feminine-plaza.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:118218672420:android:cc101bce71a7b0cb1a0bb1",
+        "android_client_info": {
+          "package_name": "com.example.feminine_plaza_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "118218672420-oqh1q7kc6gc66hsl99qto847dtisuhbb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBPM4SUcvNKovJzjbg2ZkYq7z6ITqC8wkA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "118218672420-oqh1q7kc6gc66hsl99qto847dtisuhbb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
