@@ -1,4 +1,7 @@
+import 'package:feminine_plaza_app/screens/add_item_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class LogInScreen extends StatelessWidget {
   static const route = '/login';
@@ -27,6 +30,7 @@ class LogInButton extends StatefulWidget {
 
 class _LogInButtonState extends State<LogInButton> {
   var _loading = false;
+  final GoogleSignIn googleSignIn = GoogleSignIn();
   @override
   Widget build(BuildContext context) {
     return _loading
@@ -39,7 +43,9 @@ class _LogInButtonState extends State<LogInButton> {
               setState(() {
                 _loading = true;
               });
-              try {} catch (e) {
+              try {
+                signInWithGoogle(context);
+              } catch (e) {
                 setState(() {
                   _loading = true;
                 });
@@ -69,5 +75,30 @@ class _LogInButtonState extends State<LogInButton> {
               ),
             ),
           );
+  }
+
+  Future<void> signInWithGoogle(final BuildContext context) async {
+    try {
+      final GoogleSignInAccount googleSignInAccount =
+          await googleSignIn.signIn();
+      final GoogleSignInAuthentication googleSignInAuthentication =
+          await googleSignInAccount.authentication;
+      final AuthCredential credential = GoogleAuthProvider.credential(
+        accessToken: googleSignInAuthentication.accessToken,
+        idToken: googleSignInAuthentication.idToken,
+      );
+      final UserCredential userCredential =
+          await FirebaseAuth.instance.signInWithCredential(credential);
+      if (userCredential.user != null) {
+        Navigator.of(context).pushReplacementNamed(AddItemScreen.route);
+      } else {
+        Navigator.of(context).pop();
+      }
+    } catch (e) {
+      print(e);
+      setState(() {
+        _loading = true;
+      });
+    }
   }
 }
